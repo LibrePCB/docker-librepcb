@@ -1,0 +1,25 @@
+language: generic
+os: linux
+dist: trusty
+sudo: required
+services:
+  - docker
+matrix:
+  fast_finish: true
+env:
+  - DOCKER_TAG=latest
+  - DOCKER_TAG=trusty
+
+script:
+  - docker build -t librepcb/librepcb:${DOCKER_TAG} -f ./${DOCKER_TAG}/Dockerfile .
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push librepcb/librepcb:${DOCKER_TAG};
+    fi
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
