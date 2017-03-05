@@ -1,11 +1,17 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
 # install packages
-RUN DEBIAN_FRONTEND=noninteractive \
-     apt-get -q update \
-  && apt-get -qy upgrade \
-  && apt-get -qy install git g++ qt5-default qttools5-dev-tools qt5-doc qtcreator libglu1-mesa-dev dia \
-  && apt-get clean
+RUN apt-get update && apt-get -y install --no-install-recommends \
+    dia \
+    g++ \
+    git \
+    libglu1-mesa-dev \
+    qt5-default \
+    qt5-doc \
+    qtcreator \
+    qttools5-dev-tools \
+    vim \
+  && rm -rf /var/lib/apt/lists/*
 
 # checkout librepcb
 RUN git clone --recursive https://github.com/LibrePCB/LibrePCB.git /opt/LibrePCB \
