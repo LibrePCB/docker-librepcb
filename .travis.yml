@@ -7,7 +7,7 @@ services:
 matrix:
   fast_finish: true
 env:
-  - DOCKER_TAG=latest
+  - DOCKER_TAG=devel
   - DOCKER_TAG=trusty
 
 script:

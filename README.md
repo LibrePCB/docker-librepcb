@@ -13,10 +13,11 @@ image is hosted at [Docker Hub](https://hub.docker.com/r/librepcb/librepcb/).
 
 ## Available Tags
 
-### `latest`
+### `devel`
 
-This tag is made for end users to build and run LibrePCB. In addition to all required dependencies,
-it also contains useful development tools like `qtcreator`, `qt5-doc`, `dia` and `vim`.
+This tag (based on Ubuntu 16.04) is **made for developers** to build and run LibrePCB. In addition
+to all required dependencies, it also contains useful development tools like `qtcreator`, `qt5-doc`,
+`dia` and `vim`.
 
 ### `trusty`
 
