@@ -13,6 +13,18 @@ image is hosted at [Docker Hub](https://hub.docker.com/r/librepcb/librepcb/).
 
 ## Available Tags
 
+### `latest`
+
+This tag is based on [Alpine Linux](https://alpinelinux.org/) and contains only the LibrePCB
+executable and the [demo workspace](https://github.com/LibrePCB/demo-workspace). This minimalism
+makes it the **best choice to quickly trying out LibrePCB**, which is done this way:
+
+```
+xhost +local:
+docker run -it --rm --privileged -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix librepcb/librepcb:latest
+xhost -local:
+```
+
 ### `devel`
 
 This tag (based on Ubuntu 16.04) is **made for developers** to build and run LibrePCB. In addition
