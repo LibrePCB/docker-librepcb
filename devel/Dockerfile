@@ -1,10 +1,14 @@
 FROM ubuntu:16.04
 
+# TODO: this is an ugly hack to make librepcb's tests passing!
+ENV USERNAME="root"
+
 # install packages
 RUN apt-get update && apt-get -y install --no-install-recommends \
     ca-certificates \
     ccache \
     clang \
+    dbus \
     dia \
     doxygen \
     g++ \
@@ -41,6 +45,13 @@ RUN /opt/LibrePCB/dev/docker/make_librepcb.sh
 RUN mkdir -p /root/.config/LibrePCB/ \
   && cp /opt/LibrePCB/dev/docker/LibrePCB_git-master.conf /root/.config/LibrePCB/LibrePCB_git-master.conf
 
-# set working directory and default command to execute
+# use virtual display server as default
+ENV DISPLAY=":99"
+
+# set working directory
 WORKDIR /opt/LibrePCB
+
+# start xvfb and startup script when starting the container
+COPY entrypoint.sh /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
 CMD bash -C "/opt/LibrePCB/dev/docker/startup.sh";"bash"
